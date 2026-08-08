@@ -52,11 +52,19 @@ const NO_SCOPE = "__nasional__";
 
 function PenggunaPage() {
   const queryClient = useQueryClient();
+  const currentUser = useCurrentUser();
+  const isSuperAdmin = currentUser.data?.role === "super_admin";
   const listFn = useServerFn(listUserAccounts);
   const createFn = useServerFn(createUserAccount);
   const updateFn = useServerFn(updateUserAccount);
 
-  const usersQuery = useQuery({ queryKey: ["admin-users"], queryFn: () => listFn() });
+  const usersQuery = useQuery({
+    queryKey: ["admin-users"],
+    queryFn: () => listFn(),
+    enabled: isSuperAdmin,
+    retry: false,
+  });
+
 
   const wilayahQuery = useQuery({
     queryKey: ["wilayah-options"],
