@@ -10,33 +10,199 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SetupRouteImport } from './routes/setup'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedMonitoringEvaluasiRouteImport } from './routes/_authenticated/monitoring-evaluasi'
+import { Route as AuthenticatedPolicyBriefRouteImport } from './routes/_authenticated/policy-brief'
+import { Route as AuthenticatedRekomendasiProgramRouteImport } from './routes/_authenticated/rekomendasi-program'
+import { Route as AuthenticatedSkorKerentananRouteImport } from './routes/_authenticated/skor-kerentanan'
+import { Route as AuthenticatedAdminAuditRouteImport } from './routes/_authenticated/admin/audit'
+import { Route as AuthenticatedAdminImporDataRouteImport } from './routes/_authenticated/admin/impor-data'
+import { Route as AuthenticatedAdminPenggunaRouteImport } from './routes/_authenticated/admin/pengguna'
+import { Route as AuthenticatedAdminPerformaRouteImport } from './routes/_authenticated/admin/performa'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetupRoute = SetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMonitoringEvaluasiRoute =
+  AuthenticatedMonitoringEvaluasiRouteImport.update({
+    id: '/monitoring-evaluasi',
+    path: '/monitoring-evaluasi',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPolicyBriefRoute =
+  AuthenticatedPolicyBriefRouteImport.update({
+    id: '/policy-brief',
+    path: '/policy-brief',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedRekomendasiProgramRoute =
+  AuthenticatedRekomendasiProgramRouteImport.update({
+    id: '/rekomendasi-program',
+    path: '/rekomendasi-program',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSkorKerentananRoute =
+  AuthenticatedSkorKerentananRouteImport.update({
+    id: '/skor-kerentanan',
+    path: '/skor-kerentanan',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminAuditRoute = AuthenticatedAdminAuditRouteImport.update({
+  id: '/admin/audit',
+  path: '/admin/audit',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminImporDataRoute =
+  AuthenticatedAdminImporDataRouteImport.update({
+    id: '/admin/impor-data',
+    path: '/admin/impor-data',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminPenggunaRoute =
+  AuthenticatedAdminPenggunaRouteImport.update({
+    id: '/admin/pengguna',
+    path: '/admin/pengguna',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminPerformaRoute =
+  AuthenticatedAdminPerformaRouteImport.update({
+    id: '/admin/performa',
+    path: '/admin/performa',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/setup': typeof SetupRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/monitoring-evaluasi': typeof AuthenticatedMonitoringEvaluasiRoute
+  '/policy-brief': typeof AuthenticatedPolicyBriefRoute
+  '/rekomendasi-program': typeof AuthenticatedRekomendasiProgramRoute
+  '/skor-kerentanan': typeof AuthenticatedSkorKerentananRoute
+  '/admin/audit': typeof AuthenticatedAdminAuditRoute
+  '/admin/impor-data': typeof AuthenticatedAdminImporDataRoute
+  '/admin/pengguna': typeof AuthenticatedAdminPenggunaRoute
+  '/admin/performa': typeof AuthenticatedAdminPerformaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/setup': typeof SetupRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/monitoring-evaluasi': typeof AuthenticatedMonitoringEvaluasiRoute
+  '/policy-brief': typeof AuthenticatedPolicyBriefRoute
+  '/rekomendasi-program': typeof AuthenticatedRekomendasiProgramRoute
+  '/skor-kerentanan': typeof AuthenticatedSkorKerentananRoute
+  '/admin/audit': typeof AuthenticatedAdminAuditRoute
+  '/admin/impor-data': typeof AuthenticatedAdminImporDataRoute
+  '/admin/pengguna': typeof AuthenticatedAdminPenggunaRoute
+  '/admin/performa': typeof AuthenticatedAdminPerformaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/setup': typeof SetupRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/monitoring-evaluasi': typeof AuthenticatedMonitoringEvaluasiRoute
+  '/_authenticated/policy-brief': typeof AuthenticatedPolicyBriefRoute
+  '/_authenticated/rekomendasi-program': typeof AuthenticatedRekomendasiProgramRoute
+  '/_authenticated/skor-kerentanan': typeof AuthenticatedSkorKerentananRoute
+  '/_authenticated/admin/audit': typeof AuthenticatedAdminAuditRoute
+  '/_authenticated/admin/impor-data': typeof AuthenticatedAdminImporDataRoute
+  '/_authenticated/admin/pengguna': typeof AuthenticatedAdminPenggunaRoute
+  '/_authenticated/admin/performa': typeof AuthenticatedAdminPerformaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/setup'
+    | '/dashboard'
+    | '/monitoring-evaluasi'
+    | '/policy-brief'
+    | '/rekomendasi-program'
+    | '/skor-kerentanan'
+    | '/admin/audit'
+    | '/admin/impor-data'
+    | '/admin/pengguna'
+    | '/admin/performa'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/setup'
+    | '/dashboard'
+    | '/monitoring-evaluasi'
+    | '/policy-brief'
+    | '/rekomendasi-program'
+    | '/skor-kerentanan'
+    | '/admin/audit'
+    | '/admin/impor-data'
+    | '/admin/pengguna'
+    | '/admin/performa'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/reset-password'
+    | '/setup'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/monitoring-evaluasi'
+    | '/_authenticated/policy-brief'
+    | '/_authenticated/rekomendasi-program'
+    | '/_authenticated/skor-kerentanan'
+    | '/_authenticated/admin/audit'
+    | '/_authenticated/admin/impor-data'
+    | '/_authenticated/admin/pengguna'
+    | '/_authenticated/admin/performa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SetupRoute: typeof SetupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +214,134 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setup': {
+      id: '/setup'
+      path: '/setup'
+      fullPath: '/setup'
+      preLoaderRoute: typeof SetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/monitoring-evaluasi': {
+      id: '/_authenticated/monitoring-evaluasi'
+      path: '/monitoring-evaluasi'
+      fullPath: '/monitoring-evaluasi'
+      preLoaderRoute: typeof AuthenticatedMonitoringEvaluasiRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/policy-brief': {
+      id: '/_authenticated/policy-brief'
+      path: '/policy-brief'
+      fullPath: '/policy-brief'
+      preLoaderRoute: typeof AuthenticatedPolicyBriefRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/rekomendasi-program': {
+      id: '/_authenticated/rekomendasi-program'
+      path: '/rekomendasi-program'
+      fullPath: '/rekomendasi-program'
+      preLoaderRoute: typeof AuthenticatedRekomendasiProgramRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/skor-kerentanan': {
+      id: '/_authenticated/skor-kerentanan'
+      path: '/skor-kerentanan'
+      fullPath: '/skor-kerentanan'
+      preLoaderRoute: typeof AuthenticatedSkorKerentananRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/audit': {
+      id: '/_authenticated/admin/audit'
+      path: '/admin/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AuthenticatedAdminAuditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/impor-data': {
+      id: '/_authenticated/admin/impor-data'
+      path: '/admin/impor-data'
+      fullPath: '/admin/impor-data'
+      preLoaderRoute: typeof AuthenticatedAdminImporDataRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/pengguna': {
+      id: '/_authenticated/admin/pengguna'
+      path: '/admin/pengguna'
+      fullPath: '/admin/pengguna'
+      preLoaderRoute: typeof AuthenticatedAdminPenggunaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/performa': {
+      id: '/_authenticated/admin/performa'
+      path: '/admin/performa'
+      fullPath: '/admin/performa'
+      preLoaderRoute: typeof AuthenticatedAdminPerformaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedMonitoringEvaluasiRoute: typeof AuthenticatedMonitoringEvaluasiRoute
+  AuthenticatedPolicyBriefRoute: typeof AuthenticatedPolicyBriefRoute
+  AuthenticatedRekomendasiProgramRoute: typeof AuthenticatedRekomendasiProgramRoute
+  AuthenticatedSkorKerentananRoute: typeof AuthenticatedSkorKerentananRoute
+  AuthenticatedAdminAuditRoute: typeof AuthenticatedAdminAuditRoute
+  AuthenticatedAdminImporDataRoute: typeof AuthenticatedAdminImporDataRoute
+  AuthenticatedAdminPenggunaRoute: typeof AuthenticatedAdminPenggunaRoute
+  AuthenticatedAdminPerformaRoute: typeof AuthenticatedAdminPerformaRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedMonitoringEvaluasiRoute: AuthenticatedMonitoringEvaluasiRoute,
+  AuthenticatedPolicyBriefRoute: AuthenticatedPolicyBriefRoute,
+  AuthenticatedRekomendasiProgramRoute: AuthenticatedRekomendasiProgramRoute,
+  AuthenticatedSkorKerentananRoute: AuthenticatedSkorKerentananRoute,
+  AuthenticatedAdminAuditRoute: AuthenticatedAdminAuditRoute,
+  AuthenticatedAdminImporDataRoute: AuthenticatedAdminImporDataRoute,
+  AuthenticatedAdminPenggunaRoute: AuthenticatedAdminPenggunaRoute,
+  AuthenticatedAdminPerformaRoute: AuthenticatedAdminPerformaRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SetupRoute: SetupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
