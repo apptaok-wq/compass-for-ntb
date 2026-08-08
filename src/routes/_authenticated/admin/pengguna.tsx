@@ -132,7 +132,24 @@ function PenggunaPage() {
     onSuccess: () => void queryClient.invalidateQueries({ queryKey: ["admin-users"] }),
   });
 
+  if (currentUser.isLoading) {
+    return <Skeleton className="h-64 w-full" />;
+  }
+
+  if (!isSuperAdmin) {
+    return (
+      <div className="space-y-3">
+        <h1 className="display-md">Akses terbatas</h1>
+        <p className="max-w-xl text-sm text-muted-foreground">
+          Halaman manajemen pengguna hanya dapat diakses oleh Super Admin. Hubungi administrator
+          sistem bila Anda memerlukan perubahan akun.
+        </p>
+      </div>
+    );
+  }
+
   return (
+
     <div className="space-y-10">
       <header>
         <p className="eyebrow">Administrasi</p>
