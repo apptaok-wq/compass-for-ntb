@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { createUserAccount, listUserAccounts, updateUserAccount } from "@/lib/admin.functions";
 import { ALL_ROLES, ROLE_LABELS, type AppRole } from "@/lib/rbac";
 import { Button } from "@/components/ui/button";
@@ -52,11 +53,19 @@ const NO_SCOPE = "__nasional__";
 
 function PenggunaPage() {
   const queryClient = useQueryClient();
+  const currentUser = useCurrentUser();
+  const isSuperAdmin = currentUser.data?.role === "super_admin";
   const listFn = useServerFn(listUserAccounts);
   const createFn = useServerFn(createUserAccount);
   const updateFn = useServerFn(updateUserAccount);
 
-  const usersQuery = useQuery({ queryKey: ["admin-users"], queryFn: () => listFn() });
+  const usersQuery = useQuery({
+    queryKey: ["admin-users"],
+    queryFn: () => listFn(),
+    enabled: isSuperAdmin,
+    retry: false,
+  });
+
 
   const wilayahQuery = useQuery({
     queryKey: ["wilayah-options"],
@@ -123,7 +132,24 @@ function PenggunaPage() {
     onSuccess: () => void queryClient.invalidateQueries({ queryKey: ["admin-users"] }),
   });
 
+  if (currentUser.isLoading) {
+    return <Skeleton className="h-64 w-full" />;
+  }
+
+  if (!isSuperAdmin) {
+    return (
+      <div className="space-y-3">
+        <h1 className="display-md">Akses terbatas</h1>
+        <p className="max-w-xl text-sm text-muted-foreground">
+          Halaman manajemen pengguna hanya dapat diakses oleh Super Admin. Hubungi administrator
+          sistem bila Anda memerlukan perubahan akun.
+        </p>
+      </div>
+    );
+  }
+
   return (
+
     <div className="space-y-10">
       <header>
         <p className="eyebrow">Administrasi</p>

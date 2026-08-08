@@ -82,7 +82,11 @@ export const createUserAccount = createServerFn({ method: "POST" })
       email_confirm: true,
     });
     if (createError || !created.user) {
-      throw new Error(createError?.message ?? "Gagal membuat akun pengguna.");
+      const raw = createError?.message ?? "";
+      if (/already been registered|already exists|duplicate/i.test(raw)) {
+        throw new Error(`Surel ${data.email} sudah terdaftar. Gunakan surel lain.`);
+      }
+      throw new Error(raw || "Gagal membuat akun pengguna.");
     }
     const userId = created.user.id;
 
