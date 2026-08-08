@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { createUserAccount, listUserAccounts, updateUserAccount } from "@/lib/admin.functions";
 import { ALL_ROLES, ROLE_LABELS, type AppRole } from "@/lib/rbac";
 import { Button } from "@/components/ui/button";
