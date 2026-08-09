@@ -191,6 +191,53 @@ export type Database = {
           },
         ]
       }
+      skor_kerentanan: {
+        Row: {
+          created_at: string
+          dihitung_oleh: string | null
+          dihitung_pada: string
+          id: string
+          komponen: Json
+          metode_versi: string
+          periode: string
+          skor: number
+          updated_at: string
+          wilayah_id: string
+        }
+        Insert: {
+          created_at?: string
+          dihitung_oleh?: string | null
+          dihitung_pada?: string
+          id?: string
+          komponen?: Json
+          metode_versi: string
+          periode: string
+          skor: number
+          updated_at?: string
+          wilayah_id: string
+        }
+        Update: {
+          created_at?: string
+          dihitung_oleh?: string | null
+          dihitung_pada?: string
+          id?: string
+          komponen?: Json
+          metode_versi?: string
+          periode?: string
+          skor?: number
+          updated_at?: string
+          wilayah_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "skor_kerentanan_wilayah_id_fkey"
+            columns: ["wilayah_id"]
+            isOneToOne: false
+            referencedRelation: "wilayah"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
