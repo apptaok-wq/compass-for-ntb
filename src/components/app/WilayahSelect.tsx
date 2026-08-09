@@ -70,7 +70,12 @@ export function WilayahSelect({
       <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
         {label}
       </span>
-      <Select value={value ?? undefined} onValueChange={onChange} disabled={disabled ?? false}>
+      <Select
+        {...(value ? { value } : {})}
+        onValueChange={onChange}
+        disabled={disabled ?? false}
+      >
+
         <SelectTrigger className="w-full sm:w-72">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
