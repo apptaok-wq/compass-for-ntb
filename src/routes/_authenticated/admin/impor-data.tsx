@@ -64,7 +64,7 @@ function parseCsv(text: string): ParseResult {
     .filter((l) => l.length > 0);
   if (lines.length < 2) return { rows: [], errors: ["Berkas kosong atau hanya berisi header."] };
 
-  const header = lines[0].split(",").map((h) => h.trim().toLowerCase());
+  const header = (lines[0] ?? "").split(",").map((h) => h.trim().toLowerCase());
   const forbidden = header.filter((h) => FORBIDDEN.includes(h));
   if (forbidden.length > 0) {
     return {
@@ -91,7 +91,7 @@ function parseCsv(text: string): ParseResult {
 
   const rows: ImporRow[] = [];
   for (let i = 1; i < lines.length; i++) {
-    const cells = lines[i].split(",").map((c) => c.trim());
+    const cells = (lines[i] ?? "").split(",").map((c) => c.trim());
     const kodeBps = cells[idx("kode_bps")] ?? "";
     const periode = cells[idx("periode")] ?? "";
     const sumberData = cells[idx("sumber_data")] ?? "";
