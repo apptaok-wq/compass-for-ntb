@@ -7,7 +7,9 @@ import type { PovertyStats, TrendData, KabupatenData, DesaData } from '@/types/p
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
-import { WilayahOverview } from '@/components/app/WilayahOverview'
+import { TrendChart } from '@/components/dashboard/TrendChart'
+import { KabupatenChart } from '@/components/dashboard/KabupatenChart'
+import { DesaTable } from '@/components/dashboard/DesaTable'
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
   head: () => ({
@@ -111,9 +113,16 @@ function DashboardPage() {
         <KPICard label="Periode Terakhir" value={data.stats?.periode ?? '—'} />
       </div>
 
-      <div className="space-y-8">
-        {/* Preserve existing WilayahOverview as reference and supplemental table */}
-        <WilayahOverview />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <TrendChart data={data.trend} />
+        <KabupatenChart data={data.kabupaten} />
+      </div>
+
+      <DesaTable data={data.desa} />
+
+      <div className="mt-6">
+        {/* Optional: keep WilayahOverview as supplemental reference */}
+        {/* <WilayahOverview /> */}
       </div>
     </div>
   )
